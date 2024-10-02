@@ -36,12 +36,12 @@ public class CellSimulation {
 
     private void populateCells() {
         double size = rand.nextInt(5) + 2;
-        Cell newCell = new Cell( //idk if this is right
+        cell = new Cell(
             rand.nextDouble() * (canvas.getWidth() - size),
             rand.nextDouble() * (canvas.getWidth() - size),
             size,
             Color.getHSBColor(rand.nextFloat(), rand.nextFloat() * 0.5f + 0.1f, 1));
-        canvas.add(newCell.getShape());
+        canvas.add(cell.getShape());
     }
 
     private static double sqr(double x) {
