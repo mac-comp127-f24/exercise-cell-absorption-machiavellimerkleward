@@ -41,15 +41,11 @@ public class CellSimulation {
             rand.nextDouble() * (canvas.getWidth() - size),
             size,
             Color.getHSBColor(rand.nextFloat(), rand.nextFloat() * 0.5f + 0.1f, 1));
-        canvas.add(shape);
+        canvas.add(newCell.getShape());
     }
 
     private static double sqr(double x) {
         return x * x;
     }
 
-    private static double normalizeRadians(double theta) {
-        double pi2 = Math.PI * 2;
-        return ((theta + Math.PI) % pi2 + pi2) % pi2 - Math.PI;
-    }
 }

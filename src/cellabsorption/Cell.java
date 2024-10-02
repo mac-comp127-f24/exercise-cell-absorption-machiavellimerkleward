@@ -49,4 +49,13 @@ public class Cell{
                 + (Math.random() - 0.5) * WIGGLINESS
                 + turnTowardCenter * Math.tanh(distToCenter / WANDER_FROM_CENTER));
     }
+
+    private static double normalizeRadians(double theta) {
+        double pi2 = Math.PI * 2;
+        return ((theta + Math.PI) % pi2 + pi2) % pi2 - Math.PI;
+    }
+
+    public Ellipse getShape() {
+        return shape;
+    }
 }
