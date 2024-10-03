@@ -29,16 +29,21 @@ public class CellSimulation {
             Point canvasCenter = new Point(canvas.getWidth() / 2.0, canvas.getHeight() / 2.0);
             for(Cell cell : cells) {
                 cell.moveAround(canvasCenter);
-                cell.grow(0.02);                
+                handleCellInteraction();     
+                canvas.draw();     
             }  
+            System.out.println("Hello");
+            
             canvas.draw();
             canvas.pause(10); 
+            
+
         }
     }
 
     private void populateCells() {
         cells = new ArrayList<>();
-        for(int i = 0; i < 200; i++){
+        for(int i = 0; i < 199; i++){
             double size = rand.nextInt(5) + 2;
             Cell cell = new Cell(
                 rand.nextDouble() * (canvas.getWidth() - size),
@@ -55,11 +60,11 @@ public class CellSimulation {
     }
 
     private void handleCellInteraction() {
-        for(int i = 0; i < 200; i++){
-            cells.get(i);
-            for(int j = (i + 1); j < 200;) {
-                cells.get(j);
-                this.cell.interactWith(j);
+        for(int i = 0; i < cells.size(); i++){
+            Cell cell1 = cells.get(i);
+            for(int j = (i + 1); j < cells.size(); j++) {
+                Cell cell2 = cells.get(j);
+                cell1.interactWith(cell2);
             }
         }
         // for i from 0 up to max cell index
