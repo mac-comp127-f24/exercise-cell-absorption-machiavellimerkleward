@@ -30,7 +30,6 @@ public class CellSimulation {
             for(Cell cell : cells) {
                 cell.moveAround(canvasCenter);
                 handleCellInteraction();     
-                canvas.draw();     
             }  
             System.out.println("Hello");
             
