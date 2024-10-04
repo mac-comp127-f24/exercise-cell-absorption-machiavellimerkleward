@@ -2,7 +2,6 @@ package cellabsorption;
 
 
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.Point;
 
 import java.awt.Color;
@@ -21,10 +20,10 @@ public class CellSimulation {
         new CellSimulation();
     }
 
+    //Creates a new cell simulation and runs the game.
     public CellSimulation() {
         canvas = new CanvasWindow("Cell Absorption", 800, 800);
         populateCells();
-        //noinspection InfiniteLoopStatement
         while (true) {
             Point canvasCenter = new Point(canvas.getWidth() / 2.0, canvas.getHeight() / 2.0);
             for(Cell cell : cells) {
@@ -40,6 +39,7 @@ public class CellSimulation {
         }
     }
 
+    //Creates and adds cells to the screen.
     private void populateCells() {
         cells = new ArrayList<>();
         for(int i = 0; i < 199; i++){
@@ -54,10 +54,7 @@ public class CellSimulation {
         }
     }
 
-    private static double sqr(double x) {
-        return x * x;
-    }
-
+    //Checks if any of the cells intersect. If so, the larger consumes the smaller and grows proportionally.
     private void handleCellInteraction() {
         for(int i = 0; i < cells.size(); i++){
             Cell cell1 = cells.get(i);
@@ -66,10 +63,5 @@ public class CellSimulation {
                 cell1.interactWith(cell2);
             }
         }
-        // for i from 0 up to max cell index
-            // get cell at index i
-            // for j from i+1 up to max cell index
-                // get cell at index j
-                // make the two cells interact
     }
 }

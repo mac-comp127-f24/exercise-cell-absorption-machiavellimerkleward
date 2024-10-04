@@ -5,7 +5,6 @@ import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.Point;
 
 import java.awt.Color;
-import java.util.Random;
 
 public class Cell{
     private static final double
@@ -23,10 +22,12 @@ public class Cell{
         direction = normalizeRadians(Math.random() * Math.PI * 2);
     }
 
+    //Makes the cell larger.
     public void grow(double amount) {
         setRadius(radius + amount);
     }
 
+    //Sets the radius of the cell.
     public void setRadius(double newRadius) {
         if (newRadius < 0) {
             newRadius = 0;
@@ -37,6 +38,7 @@ public class Cell{
         shape.setCenter(previousCenter);
     }
 
+    //Makes the cell move around my changing its position.
     public void moveAround(Point centerOfGravity) {
         shape.moveBy(Math.cos(direction), Math.sin(direction));
 
@@ -50,15 +52,18 @@ public class Cell{
                 + turnTowardCenter * Math.tanh(distToCenter / WANDER_FROM_CENTER));
     }
 
+    //Normalizes radians.
     private static double normalizeRadians(double theta) {
         double pi2 = Math.PI * 2;
         return ((theta + Math.PI) % pi2 + pi2) % pi2 - Math.PI;
     }
 
+    //Returns the shape of the cell, for the canvas.
     public Ellipse getShape() {
         return shape;
     }
 
+    //Returns the center of the cell.
     public Point getCenter() {
         return shape.getCenter();
     }
@@ -84,10 +89,12 @@ public class Cell{
         }
     }
 
+    //Returns the amount of overlap of the cells.
     private double overlapAmount(Cell otherCell) {
         return radius + otherCell.radius - getCenter().distance(otherCell.getCenter());
     }
 
+    //Allows one cell to absorb another.
     private void absorb(Cell otherCell) {
         double d = getCenter().distance(otherCell.getCenter());
         double a = sqr(radius) + sqr(otherCell.radius);
@@ -97,6 +104,7 @@ public class Cell{
         otherCell.setRadius(d - newRadius);
     }
 
+    //Gets the square of x.
     private static double sqr(double x) {
         return x * x;
     }
